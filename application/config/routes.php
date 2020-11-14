@@ -53,6 +53,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 $route['login'] = 'authenticate/login';
 $route['register'] = 'authenticate/register';
+$route['logout'] = 'authenticate/logout';
+
 $route['products'] = 'products/index';
 $route['products/create'] = 'products/create';
 $route['products/store'] = 'products/store';

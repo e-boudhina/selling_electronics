@@ -1,9 +1,16 @@
+<?php if($this->session->flashdata('success')){?>
+	<div class="alert alert-success text-center"><?php echo $this->session->flashdata('success'); ?></div>
+<?php };?>
 <div class="container">&nbsp;
+
 <div class="card" style="width: 100%">
 
 	<div class="card-header">
-		<b>Products:</b>
 
+		<div class="col">
+			<b>Products:</b>
+			<a class="btn btn-success  mr-1  btn-sm  float-right" href="<?php echo site_url('products/create');?>">Add product</i></a>
+		</div>
 	</div>
 	<div class="card-body">
 <!--		@include('inc.feedback')-->
@@ -38,7 +45,7 @@
 				<td>
 					<div class="row">
 					<div class="col">
-						<a class="btn btn-success  mr-1  btn-sm " href="">View</i></a>
+						<a class="btn btn-secondary mr-1  btn-sm " href="">View</i></a>
 					</div>
 					<div class="col">
 						<button type="submit" class="btn btn-info btn-sm" onclick="" >Update</button>

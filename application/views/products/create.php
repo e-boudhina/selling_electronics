@@ -11,20 +11,23 @@
 		<div class="card-body">
 
 <!--			@include('inc.feedback')-->
-			<?php echo form_open('products/store'); ?>
+			<?php echo form_open_multipart('products/store'); ?>
 
 				<div class="form-group">
 					<label for="name" >Title :</label>
 					<input type="text" class="form-control " id="name" name="title" placeholder="Title" value="<?php echo set_value('title') ?>">
 					<span class="text-danger"><?php echo form_error('title'); ?></span>
-
 				</div>
 
 				<div class="form-group">
 					<label for="email"> Category: </label>
 					<input type="text" class="form-control " id="category" name="category" placeholder="category" value="<?php echo set_value('category') ?>">
 					<span class="text-danger"><?php echo form_error('category'); ?></span>
+				</div>
 
+				<div class="form-group">
+					<label for="image">Product image : </label>
+					<input type="file" name="image" class="form-control" id="image" >
 				</div>
 
 				<div class="form-group">

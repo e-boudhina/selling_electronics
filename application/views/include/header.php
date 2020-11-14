@@ -36,6 +36,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 						<span class="sr-only">(current)</span>
 					</a>
 				</li>
+				<?php if (!$this->session->userdata('logged_in')) {?>
 				<li class="nav-item">
 					<a class="nav-link" href="#">About</a>
 				</li>
@@ -45,11 +46,22 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 				<li class="nav-item">
 					<a class="nav-link" href="#">Contact</a>
 				</li>
+
+
 				<li class="nav-item">
-					<a class="nav-link" href="login">Log In</a>
-				</li><li class="nav-item">
-					<a class="nav-link" href="register">Register</a>
+					<a class="nav-link" href="<?php echo site_url('login');?>">Log In</a>
 				</li>
+				<li class="nav-item">
+					<a class="nav-link" href="<?php echo site_url('register');?>">Register</a>
+				</li><?php }else{?>
+					<li class="nav-item">
+						<a class="nav-link" href="<?php echo site_url('products');?>">Manage Products</a>
+					</li>
+				<li class="nav-item">
+					<a class="nav-link" href="<?php echo site_url('logout');?>">Logout</a>
+				</li>
+
+				<?php } ?>
 			</ul>
 		</div>
 	</div>

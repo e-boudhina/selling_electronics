@@ -12,7 +12,7 @@
 			<div class="fadeIn first">
 				<img src="<?php echo base_url().'/assets/images/users/default_user.png' ?>" id="icon" alt="User Icon" style="width: 50px;height: 50px" />
 			</div>
-<!--			--><?php //echo validation_errors('<div class="alert alert-danger">', '</div>'); ?>
+			<?php echo validation_errors('<div class="alert alert-danger">', '</div>'); ?>
 
 			<!-- Login Form -->
 			<?php echo form_open('authenticate/register_Process'); ?>

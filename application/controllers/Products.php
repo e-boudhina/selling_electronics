@@ -1,13 +1,27 @@
 <?php
+defined('BASEPATH') OR exit('No direct script access allowed');
 class Products extends CI_Controller {
 
-
+	/*
+	I used the construct method because to avoid implementing it in ever method.
+	 This way the code is cleaner, when the controller is called it directly checks for the the session variable before executing any method
+	*/
+	function __construct()
+	{
+		//executing parent constructor so we don't lose the session variables
+		// I still don't fully understand thhis
+		parent::__construct();
+		if (!$this->session->userdata('logged_in'))
+		{
+			redirect('login');
+		}
+	}
 	public function index()
 	{
 
 		$this->load->model('Product_Model');
 		$data['products'] = $this->Product_Model->get_All();
-		print_r($data);
+//		print_r($data);
 		$this->load->view('include/header');
 		$this->load->view('products/index',$data);
 		$this->load->view('include/footer');

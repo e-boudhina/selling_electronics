@@ -13,4 +13,9 @@ class Product_Model extends CI_Model
 	{
 		$this->db->insert("Products", $data);
 	}
+	function delete_product($id)
+	{
+		$this->db->where('id', $id);
+		$this->db->delete('posts');
+	}
 }
