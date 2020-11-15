@@ -13,6 +13,7 @@ class Products extends CI_Controller {
 		parent::__construct();
 		if (!$this->session->userdata('logged_in'))
 		{
+			$this->session->set_flashdata('error','You Must Log In First!');
 			redirect('login');
 		}
 	}
