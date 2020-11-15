@@ -9,7 +9,7 @@
 
 		<div class="col">
 			<b>Products:</b>
-			<a class="btn btn-success  mr-1  btn-sm  float-right" href="<?php echo site_url('products/create');?>">Add Pchroduct</i></a>
+			<a class="btn btn-success  mr-1  btn-sm  float-right" href="<?php echo site_url('products/create');?>">Add Product</i></a>
 		</div>
 	</div>
 	<div class="card-body">
