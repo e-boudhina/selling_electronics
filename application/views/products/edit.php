@@ -31,7 +31,7 @@
 <!--			</div>-->
 
 			<div class="form-group">
-				<button type="submit" class="btn btn-dark float-left my-2 align-center">Update Product</button>
+				<button type="submit" class="btn btn-dark float-left my-2 align-center">Update</button>
 			</div>
 
 			<?php echo form_close(); ?>

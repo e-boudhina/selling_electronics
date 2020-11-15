@@ -31,7 +31,7 @@
 <!--				</div>-->
 
 				<div class="form-group">
-					<button type="submit" class="btn btn-dark float-left my-2 align-center">Create Product</button>
+					<button type="submit" class="btn btn-dark float-left my-2 align-center">Create</button>
 				</div>
 
 			<?php echo form_close(); ?>
