@@ -9,7 +9,7 @@
 
 		<div class="col">
 			<b>Products:</b>
-			<a class="btn btn-success  mr-1  btn-sm  float-right" href="<?php echo site_url('products/create');?>">Add product</i></a>
+			<a class="btn btn-success  mr-1  btn-sm  float-right" href="<?php echo site_url('products/create');?>">Add Product</i></a>
 		</div>
 	</div>
 	<div class="card-body">
@@ -40,9 +40,10 @@
 				<td><?php echo $product['title']; ?></td>
 				<td><?php echo $product['category']; ?></td>
 				<td>
-					created at
-				</td><td>
-					lastmodified
+					Not Implemented Yet
+				</td>
+				<td>
+					Not Implemented Yet
 				</td>
 				<td>
 					<div class="row">
