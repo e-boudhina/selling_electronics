@@ -57,6 +57,10 @@ $route['logout'] = 'authenticate/logout';
 
 $route['products'] = 'products/index';
 $route['products/create'] = 'products/create';
+$route['products/edit/:(id)'] = 'products/edit/$id';
+$route['products/update/:(id)'] = 'products/update/$id';
+$route['products/delete/:(id)'] = 'products/delete/$id';
+
 $route['products/store'] = 'products/store';
 //$route[''] = 'home/index';
 

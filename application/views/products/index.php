@@ -30,10 +30,12 @@
 			</tr>
 			</thead>
 			<tbody>
-			<?php foreach ($products as $product) {?>
+			<?php foreach ($products as $key =>$product) {?>
 
 			<tr>
-				<th scope="row">{{$key+1}}</th>
+				<th scope="row">
+					<?php echo $key+1; ?>
+				</th>
 				<td>image</td>
 				<td><?php echo $product['title']; ?></td>
 				<td><?php echo $product['category']; ?></td>
@@ -44,13 +46,15 @@
 				</td>
 				<td>
 					<div class="row">
+<!--					<div class="col">-->
+<!--						<a class="btn btn-secondary mr-1  btn-sm " href="--><?php //echo site_url('products/edit/'.$product['id']);?><!--">View</i></a>-->
+<!--					</div>-->
 					<div class="col">
-						<a class="btn btn-secondary mr-1  btn-sm " href="">View</i></a>
-					</div>
-					<div class="col">
-						<button type="submit" class="btn btn-info btn-sm" onclick="" >Update</button>
+						<a class="btn btn-info mr-1  btn-sm " href="<?php echo site_url('products/edit/'.$product['id']);?>">Update</i></a>
+
 					</div>	<div class="col">
-						<button type="submit" class="btn btn-danger btn-sm" onclick="" >Delete</button>
+							<a class="btn btn-danger mr-1  btn-sm " onclick="return confirm('Are you sure ?')" href="<?php echo site_url('products/delete/'.$product['id']);?>">Delete</i></a>
+
 					</div>
 					</div>
 				</td>

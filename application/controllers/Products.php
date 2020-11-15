@@ -32,6 +32,46 @@ class Products extends CI_Controller {
 		$this->load->view('products/create');
 		$this->load->view('include/footer');
 	}
+	public function edit($id)
+	{
+		//Retrieving the product by id
+		$data['product'] = $this->Product_Model->get_by_Id($id);
+// 		die($data);
+		$this->load->view('include/header');
+		$this->load->view('products/edit',$data);
+		$this->load->view('include/footer');
+	}
+
+	public function update($id)
+	{
+
+//		echo "here 1";
+
+		//Loading the library
+		$this->load->library('form_validation');
+		//Form validation:
+		$this->form_validation->set_rules('title', 'Title', 'required');
+		$this->form_validation->set_rules('category', 'Category', 'required');
+
+//			echo "here 2";
+
+		//Running validation:
+		if ($this->form_validation->run() == false) {
+			$this->create();
+//						echo "here 10";
+
+		} else {
+			//True
+			//Updating can be done here but it is recommended that it should be done in the model
+			//I passed the id parameter to the model but you can choose not to and extract it within the model using $this->input
+			$this->Product_Model->update_product($id);
+			$this->session->set_flashdata('success', 'Product Updated Successfully');
+//			echo "here 4";
+			// don't use this->index() to redirect
+			redirect('products');
+		}
+	}
+
 	public function store()
 	{
 
@@ -70,6 +110,12 @@ class Products extends CI_Controller {
 			// don't use this->index() to redirect
 			redirect('products');
 		}
+	}
+	public function delete($id)
+	{
+		$this->Product_Model->delete_product_by_Id($id);
+		$this->session->set_flashdata('success','Product Deleted Successfully');
+		redirect('products');
 	}
 
 }

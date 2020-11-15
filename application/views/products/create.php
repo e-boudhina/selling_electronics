@@ -25,10 +25,10 @@
 					<span class="text-danger"><?php echo form_error('category'); ?></span>
 				</div>
 
-				<div class="form-group">
-					<label for="image">Product image : </label>
-					<input type="file" name="image" class="form-control" id="image" >
-				</div>
+<!--				<div class="form-group">-->
+<!--					<label for="image">Product image : </label>-->
+<!--					<input type="file" name="image" class="form-control" id="image" >-->
+<!--				</div>-->
 
 				<div class="form-group">
 					<button type="submit" class="btn btn-dark float-left my-2 align-center">Create Product</button>
