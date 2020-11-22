@@ -23,7 +23,7 @@
 				<th scope="col">#</th>
 				<th scope="col">Image</th>
 				<th scope="col">Name</th>
-				<th scope="col">Category</th>
+				<th scope="col">Description</th>
 				<th scope="col">Created at</th>
 				<th scope="col">Last modified</th>
 				<th scope="col">Actions</th>
@@ -37,8 +37,8 @@
 					<?php echo $key+1; ?>
 				</th>
 				<td>image</td>
-				<td><?php echo $product['title']; ?></td>
-				<td><?php echo $product['category']; ?></td>
+				<td><?php echo $product['name']; ?></td>
+				<td><?php echo $product['description']; ?></td>
 				<td>
 					Not Implemented Yet
 				</td>
@@ -66,6 +66,6 @@
 
 		<?php } else {?>
 
-		<h3 class="text-center"> There Is No Catalogues In Your Database</h3>
+		<h3 class="text-center"> There Is No Products In Your Database</h3>
 		<?php } ?>
 	</div>

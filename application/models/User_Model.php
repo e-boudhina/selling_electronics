@@ -69,7 +69,7 @@ class User_Model extends CI_Model
 		$result = $this->db->get('users');
 		if ($result->num_rows() == 1){
 			//row 0 = column 0 which is the id that we need
-			return $result->row(0)->id;
+			return $result->row(0);
 		}else{
 			return false;
 		}

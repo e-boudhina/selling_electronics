@@ -20,12 +20,12 @@ class Product_Model extends CI_Model
 	}
 	function update_product($id)
 	{
-		$title = $this->input->post('title');
-		$category = $this->input->post('category');
+		$name = $this->input->post('name');
+		$description = $this->input->post('description');
 		//Putting data into array
 		$product_data = array(
-			"title" => $title,
-			"category" => $category,
+			"name" => $name,
+			"description" => $description,
 		);
 		$this->db->where('id', $id);
 		$this->db->update("Products", $product_data);

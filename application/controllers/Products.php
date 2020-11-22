@@ -51,14 +51,14 @@ class Products extends CI_Controller {
 		//Loading the library
 		$this->load->library('form_validation');
 		//Form validation:
-		$this->form_validation->set_rules('title', 'Title', 'required');
-		$this->form_validation->set_rules('category', 'Category', 'required');
+		$this->form_validation->set_rules('name', 'Name', 'required');
+		$this->form_validation->set_rules('description', 'Description', 'required');
 
 //			echo "here 2";
 
 		//Running validation:
 		if ($this->form_validation->run() == false) {
-			$this->create();
+		$this->edit($id);
 //						echo "here 10";
 
 		} else {
@@ -81,8 +81,8 @@ class Products extends CI_Controller {
 		//Loading the library
 		$this->load->library('form_validation');
 		//Form validation:
-		$this->form_validation->set_rules('title', 'Title', 'required');
-		$this->form_validation->set_rules('category', 'Category','required');
+		$this->form_validation->set_rules('name', 'Name', 'required');
+		$this->form_validation->set_rules('description', 'Description','required');
 
 //			echo "here 2";
 
@@ -96,13 +96,13 @@ class Products extends CI_Controller {
 			$this->load->model('Product_Model');
 //			echo "here 3";
 
-			$title = $this->input->post('title');
-			$category = $this->input->post('category');
+			$name = $this->input->post('name');
+			$description = $this->input->post('description');
 
 			//Putting data into array
 			$product_data = array(
-				"title" => $title,
-				"category" => $category,
+				"name" => $name,
+				"description" => $description,
 			);
 
 			$this->Product_Model->add_product($product_data);

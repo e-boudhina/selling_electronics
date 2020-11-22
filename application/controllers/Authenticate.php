@@ -29,14 +29,15 @@ class Authenticate extends CI_Controller
 //			die('email: '.$u_email.'and pwd: '.$u_pwd);
 
 			//Login user
-			$u_id = $this->User_Model->login($u_email, $u_pwd);
+			$u_object = $this->User_Model->login($u_email, $u_pwd);
 //			die('id: '.$u_id);
-
+			print_r($u_object->email);
 			//If user exists then an is is returned from the model,
-			if ($u_id){
+			if ($u_object){
 				//Create session
 				$user_data = array(
-					'u_id'=> $u_id,
+					'u_id'=> $u_object->id,
+					'u_name'=>$u_object->username,
 					'u_email'=>$u_email,
 					'logged_in'=> true
 				);
@@ -69,7 +70,7 @@ class Authenticate extends CI_Controller
 		//Loading the library
 		$this->load->library('form_validation');
 		//Form validation:
-		$this->form_validation->set_rules('u_name', 'UserName', 'required|callback_check_username_exists');
+		$this->form_validation->set_rules('u_name', 'You made a mistake writing your user name', 'required|callback_check_username_exists');
 		$this->form_validation->set_rules('u_email', 'Email','required|callback_check_email_exists');
 		$this->form_validation->set_rules('u_password', 'Password', 'required');
 //			echo "here 2";
@@ -85,6 +86,8 @@ class Authenticate extends CI_Controller
 //			$u_email = $this->input->post('u_email');
 			//Encrypting password using md5
 			$u_pwd = md5($this->input->post('u_password'));
+
+
 			$this->User_Model->insert_data($u_pwd);
 			$this->session->set_flashdata('success','Registration Successful, Please log-in to your account.');
 			redirect('login');
@@ -116,7 +119,7 @@ class Authenticate extends CI_Controller
 			//if true
 			return true;
 		}else{
-		return false;
+			return false;
 		}
 	}
 	//Check if email exists
@@ -128,7 +131,7 @@ class Authenticate extends CI_Controller
 			//if true
 			return true;
 		}else{
-		return false;
+			return false;
 		}
 	}
 
@@ -140,5 +143,5 @@ class Authenticate extends CI_Controller
 		$this->session->unset_userdata('email');
 		$this->session->set_flashdata('success','You are logged out ! We hope you come back soon. ');
 		redirect('login');
-		}
+	}
 }

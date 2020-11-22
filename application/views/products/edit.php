@@ -14,15 +14,15 @@
 			<?php echo form_open_multipart('products/update/'.$product['id']); ?>
 
 			<div class="form-group">
-				<label for="name" >Title :</label>
-				<input type="text" class="form-control " id="name" name="title" placeholder="Title" value="<?php echo isset($product['title']) ? $product['title'] :set_value('title'); ?>">
-				<span class="text-danger"><?php echo form_error('title'); ?></span>
+				<label for="name" >Name :</label>
+				<input type="text" class="form-control " id="name" name="name" placeholder="Name" value="<?php echo isset($product['name']) ? $product['name'] :set_value('name'); ?>">
+				<span class="text-danger"><?php echo form_error('name'); ?></span>
 			</div>
 
 			<div class="form-group">
-				<label for="email"> Category: </label>
-				<input type="text" class="form-control " id="category" name="category" placeholder="category" value="<?php echo isset($product['title']) ? $product['category'] :set_value('title'); ?>">
-				<span class="text-danger"><?php echo form_error('category'); ?></span>
+				<label for="description"> Description: </label>
+				<input type="text" class="form-control " id="description" name="description" placeholder="Description" value="<?php echo isset($product['description']) ? $product['description'] :set_value('description'); ?>">
+				<span class="text-danger"><?php echo form_error('description'); ?></span>
 			</div>
 
 <!--			<div class="form-group">-->

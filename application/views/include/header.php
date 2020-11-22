@@ -55,11 +55,22 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 					<a class="nav-link" href="<?php echo site_url('register');?>">Register</a>
 				</li><?php }else{?>
 					<li class="nav-item">
-						<a class="nav-link" href="<?php echo site_url('products');?>">Manage Products</a>
 					</li>
-				<li class="nav-item">
-					<a class="nav-link" href="<?php echo site_url('logout');?>">Logout</a>
-				</li>
+
+					<li class="nav-item dropdown">
+						<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+							<?php echo $this->session->userdata('u_name')?>
+						</a>
+						<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+<!--							<a class="dropdown-item" href="--><?php //echo site_url('products');?><!--">Profile</a> Not now-->
+							<a class="dropdown-item" href="<?php echo site_url('products');?>">Manage Products</a>
+							<div class="dropdown-divider"></div>
+							<a class="dropdown-item" href="<?php echo site_url('logout');?>">Logout</a>
+						</div>
+					</li>
+
+
+
 
 				<?php } ?>
 			</ul>
