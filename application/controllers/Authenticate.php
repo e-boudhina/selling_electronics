@@ -138,9 +138,10 @@ class Authenticate extends CI_Controller
 	public function logout()
 	{
 		//Unset the user data
-		$this->session->unset_userdata('logged_in');
-		$this->session->unset_userdata('user_id');
-		$this->session->unset_userdata('email');
+//		$this->session->unset_userdata('logged_in');
+//		$this->session->unset_userdata('user_id');
+//		$this->session->unset_userdata('email');
+		$this->session->sess_destroy();
 		$this->session->set_flashdata('success','You are logged out ! We hope you come back soon. ');
 		redirect('login');
 	}

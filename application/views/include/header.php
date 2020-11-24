@@ -36,6 +36,13 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 						<span class="sr-only">(current)</span>
 					</a>
 				</li>
+
+				<li class="nav-item">
+					<a href="<?php echo site_url('customer/orders');?>" class="btn btn-info btn-sm btn-lg">
+						<span class="glyphicon glyphicon-shopping-cart"></span> Shopping Cart
+					</a>
+				</li>
+
 				<?php if (!$this->session->userdata('logged_in')) {?>
 				<li class="nav-item">
 					<a class="nav-link" href="#">About</a>

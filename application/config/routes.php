@@ -64,6 +64,10 @@ $route['products/delete/:(id)'] = 'products/delete/$id';
 $route['products/store'] = 'products/store';
 //$route[''] = 'home/index';
 
+//Custom Cart routes
+$route['customer/orders'] = 'cart/index';
+
+
 $route['default_controller'] = 'home';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;

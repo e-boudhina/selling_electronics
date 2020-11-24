@@ -5,8 +5,12 @@ class Home extends CI_Controller
 {
 	public function index()
 	{
+		//Fetching the products to be sent to the main page
+		$this->load->model('Product_Model');
+		$data['products'] = $this->Product_Model->get_All();
+
 		$this->load->view('include/header');
-		$this->load->view('home');
+		$this->load->view('home',$data);
 		$this->load->view('include/footer');
 
 	}
