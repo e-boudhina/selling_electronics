@@ -20,9 +20,15 @@
 				</div>
 
 				<div class="form-group">
-					<label for="email"> description: </label>
+					<label for="email"> Description: </label>
 					<input type="text" class="form-control " id="description" name="description" placeholder="Description" value="<?php echo set_value('description') ?>">
 					<span class="text-danger"><?php echo form_error('description'); ?></span>
+				</div>
+
+			<div class="form-group">
+					<label for="email"> Price: </label>
+					<input type="text" class="form-control " id="price" name="price" placeholder="Price" value="<?php echo set_value('price') ?>">
+					<span class="text-danger"><?php echo form_error('price'); ?></span>
 				</div>
 
 <!--				<div class="form-group">-->

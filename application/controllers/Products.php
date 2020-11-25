@@ -53,6 +53,8 @@ class Products extends CI_Controller {
 		//Form validation:
 		$this->form_validation->set_rules('name', 'Name', 'required');
 		$this->form_validation->set_rules('description', 'Description', 'required');
+		$this->form_validation->set_rules('price', 'Price','required|numeric');
+
 
 //			echo "here 2";
 
@@ -83,6 +85,7 @@ class Products extends CI_Controller {
 		//Form validation:
 		$this->form_validation->set_rules('name', 'Name', 'required');
 		$this->form_validation->set_rules('description', 'Description','required');
+		$this->form_validation->set_rules('price', 'Price','required|numeric');
 
 //			echo "here 2";
 
@@ -98,11 +101,14 @@ class Products extends CI_Controller {
 
 			$name = $this->input->post('name');
 			$description = $this->input->post('description');
+			$price = $this->input->post('price');
+
 
 			//Putting data into array
 			$product_data = array(
 				"name" => $name,
 				"description" => $description,
+				"price" => $price
 			);
 
 			$this->Product_Model->add_product($product_data);

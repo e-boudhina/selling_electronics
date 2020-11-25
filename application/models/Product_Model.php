@@ -22,10 +22,13 @@ class Product_Model extends CI_Model
 	{
 		$name = $this->input->post('name');
 		$description = $this->input->post('description');
+		$price = $this->input->post('price');
+
 		//Putting data into array
 		$product_data = array(
 			"name" => $name,
 			"description" => $description,
+			"price" => $price,
 		);
 		$this->db->where('id', $id);
 		$this->db->update("Products", $product_data);

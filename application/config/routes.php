@@ -66,6 +66,8 @@ $route['products/store'] = 'products/store';
 
 //Custom Cart routes
 $route['customer/orders'] = 'cart/index';
+$route['customer/orders/add/(:num)/(:num)'] = 'cart/store/$1/$2';
+$route['customer/orders/delete/(:num)'] = 'cart/delete/$1';
 
 
 $route['default_controller'] = 'home';

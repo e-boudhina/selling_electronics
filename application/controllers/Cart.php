@@ -1,5 +1,6 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
+
 class Cart extends CI_Controller {
 
 	/*
@@ -40,12 +41,7 @@ class Cart extends CI_Controller {
 		$this->load->view('orders/index',$data);
 		$this->load->view('include/footer');
 	}
-	public function create()
-	{
-		$this->load->view('include/header');
-		$this->load->view('products/create');
-		$this->load->view('include/footer');
-	}
+
 	public function edit($id)
 	{
 		//Retrieving the product by id
@@ -86,50 +82,22 @@ class Cart extends CI_Controller {
 		}
 	}
 
-	public function store()
+	public function store($id1, $id2)
 	{
+//		die('user id : '.$id1.' , product_id : '.$id2);
 
-//		echo "here 1";
-
-		//Loading the library
-		$this->load->library('form_validation');
-		//Form validation:
-		$this->form_validation->set_rules('name', 'Name', 'required');
-		$this->form_validation->set_rules('description', 'Description','required');
-
-//			echo "here 2";
-
-		//Running validation:
-		if ($this->form_validation->run() == false) {
-			$this->create();
-//						echo "here 10";
-
-		}else{
-			//True
-			$this->load->model('Product_Model');
-//			echo "here 3";
-
-			$name = $this->input->post('name');
-			$description = $this->input->post('description');
-
-			//Putting data into array
-			$product_data = array(
-				"name" => $name,
-				"description" => $description,
-			);
-
-			$this->Product_Model->add_product($product_data);
-			$this->session->set_flashdata('success','Product added Successfully');
+			$this->Order_Model->add_order($id1,$id2);
+			$this->session->set_flashdata('success','Product added To Cart Successfully');
 //			echo "here 4";
 			// don't use this->index() to redirect
-			redirect('products');
-		}
+			redirect('home');
+
 	}
 	public function delete($id)
 	{
-		$this->Product_Model->delete_product_by_Id($id);
-		$this->session->set_flashdata('success','Product Deleted Successfully');
-		redirect('products');
+		$this->Order_Model->delete_order_by_Id($id);
+		$this->session->set_flashdata('success','Order Deleted Successfully');
+		redirect('customer/orders');
 	}
 
 }

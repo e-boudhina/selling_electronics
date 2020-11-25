@@ -1,7 +1,6 @@
 <?php if($this->session->flashdata('success')){?>
 	<div class="alert alert-success text-center"><?php echo $this->session->flashdata('success'); ?></div>
 <?php };?>
-
 <div class="container">&nbsp;
 
 	<div class="card" style="width: 100%">
@@ -41,8 +40,8 @@
 							<td>image</td>
 							<td><?php echo $order['name']; ?></td>
 							<td><?php echo $order['description']; ?></td>
-							<td>price</td>
-							<td><?php echo $order['quantity']; ?></td>
+							<td><?php echo $order['price']; ?></td>
+							<td>x <b><?php echo $order['quantity']; ?></b></td>
 
 							<td>
 								Not Implemented Yet
@@ -57,7 +56,8 @@
 										<a class="btn btn-info mr-1  btn-sm " href="<?php echo site_url('products/edit/'.$order['id']);?>">Update Quantity</i></a>
 
 									</div>	<div class="col">
-										<a class="btn btn-danger mr-1  btn-sm " onclick="return confirm('Are you sure ?')" href="<?php echo site_url('products/delete/'.$order['id']);?>">Cancel</i></a>
+
+										<a class="btn btn-danger mr-1  btn-sm " onclick="return confirm('Are you sure ?')" href="<?php echo site_url('customer/orders/delete/'.$order['id']);?>">Cancel</i></a>
 
 									</div>
 								</div>

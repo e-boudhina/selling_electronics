@@ -1,7 +1,9 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 ?>
-
+<?php if($this->session->flashdata('success')){?>
+	<div class="alert alert-success text-center"><?php echo $this->session->flashdata('success'); ?></div>
+<?php };?>
 <!-- Page Content -->
 <div class="container">
 
@@ -58,12 +60,18 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 							<h4 class="card-title">
 								<a href="#">				<?php echo $product['name'] ?></a>
 							</h4>
-							<h5>Price $</h5>
+							<h5><?php echo $product['price'] ?> <span style="color: red"><b>DT</b></span></h5>
 							<p class="card-text"><?php echo $product['description'] ?></p>
 						</div>
 						<div class="card-footer">
 <!--							<small class="text-muted">&#9733; &#9733; &#9733; &#9733; &#9734;</small>-->
-							<button class="btn btn-outline-dark text-center">Add</button>
+							<?php if($this->session->userdata('logged_in')) { ?>
+							<a href="<?php echo site_url('customer/orders/add/'.$this->session->userdata['u_id'].'/'.$product['id']);?>" class="btn btn-outline-dark text-center">Add</a>
+							<?php }else {?>
+								<a href="<?php echo site_url('login');?>" class="btn btn-outline-dark text-center">Add</a>
+							<?php }?>
+
+
 						</div>
 					</div>
 				</div>
