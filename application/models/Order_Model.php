@@ -30,18 +30,53 @@ class Order_Model extends CI_Model
 		);
 		$this->db->insert("Orders", $order_data);
 	}
-	function update_product($id)
+	function update_product_quantity_by_adding_one($id)
 	{
-//		$user_id = $this->input->post('user_id');
-//		$product_id = $this->input->post('product_id');
-//		//Putting data into array
-//		$order_data = array(
-//			"user_id" => $user_id,
-//			"product_id" => $product_id,
-//		);
-//		$this->db->where('id', $id);
-//		$this->db->update("Products", $product_data);
+		//Fetching the order
+		//method 1
+//		$this->db->select('id');
+//		$this->db->from('orders');
+//		$this->db->where('id',$id);
+//		$query=$this->db->get();
+
+		// Method 2 simpler & shorter
+		$query = $this->db->get_where('orders',array('id'=>$id));
+		//using $query result will returnt and array. Meanwhile row ill get you just one
+		$order = $query->row();
+//		print "<pre>";
+//		print_r($order->quantity);
+//		print "</pre>";
+
+
+		$current_quantity = $order->quantity;
+		$new_quantity= $current_quantity + 1 ;
+
+//		die($new_quantity);
+		$this->db->where('id', $id);
+
+		$this->db->update("orders",array("quantity" =>$new_quantity));
+				return;
+
 	}
+	function update_product_quantity_by_removing_one($id)
+	{
+		$query = $this->db->get_where('orders',array('id'=>$id));
+		//using $query result will returnt and array. Meanwhile row ill get you just one
+		$order = $query->row();
+//		print "<pre>";
+//		print_r($order->quantity);
+//		print "</pre>";
+
+		$current_quantity = $order->quantity;
+		$new_quantity= $current_quantity - 1 ;
+
+//		die($new_quantity);
+		$this->db->where('id', $id);
+
+		$this->db->update("orders",array("quantity" =>$new_quantity));
+		return;
+	}
+
 	function delete_order_by_Id($id)
 	{
 //		die('here id = '.$id);

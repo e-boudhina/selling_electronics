@@ -1,3 +1,5 @@
+
+
 <div class="container">&nbsp;
 	<div class="card card-default">
 		<div class="card-header">
@@ -20,24 +22,34 @@
 				</div>
 
 				<div class="form-group">
-					<label for="email"> Description: </label>
+					<label for="description"> Description: </label>
 					<input type="text" class="form-control " id="description" name="description" placeholder="Description" value="<?php echo set_value('description') ?>">
 					<span class="text-danger"><?php echo form_error('description'); ?></span>
 				</div>
 
 			<div class="form-group">
-					<label for="email"> Price: </label>
+					<label for="price"> Price: </label>
 					<input type="text" class="form-control " id="price" name="price" placeholder="Price" value="<?php echo set_value('price') ?>">
 					<span class="text-danger"><?php echo form_error('price'); ?></span>
 				</div>
 
-<!--				<div class="form-group">-->
-<!--					<label for="image">Product image : </label>-->
-<!--					<input type="file" name="image" class="form-control" id="image" >-->
-<!--				</div>-->
+			<label for="upload"> Image: </label>
 
-				<div class="form-group">
-					<button type="submit" class="btn btn-dark float-left my-2 align-center">Create</button>
+			<div class="input-group">
+
+				<div class="custom-file">
+					<div class="custom-file">
+						<input type="file" name="image" class="custom-file-input " id="upload" size="20">
+						<label class="custom-file-label" for="upload">Choose file</label>
+					</div>
+
+				</div>
+			</div>
+			<span class="text-danger"><?php echo form_error('image'); ?></span>
+
+
+				<div class="form-group mt-4">
+					<button type="submit" class="btn btn-outline-success float-left my-2 align-center" style="width: 100%">Create</button>
 				</div>
 
 			<?php echo form_close(); ?>

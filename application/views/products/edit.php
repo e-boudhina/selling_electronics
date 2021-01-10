@@ -1,3 +1,7 @@
+<?php if($this->session->flashdata('error')){?>
+	<div class="alert alert-danger text-center"><?php echo $this->session->flashdata('error'); ?></div>
+<?php };?>
+
 <div class="container">&nbsp;
 	<div class="card card-default">
 		<div class="card-header">
@@ -25,17 +29,39 @@
 				<span class="text-danger"><?php echo form_error('description'); ?></span>
 			</div>
 
-<!--			<div class="form-group">-->
-<!--				<label for="image">Product image : </label>-->
-<!--				<input type="file" name="image" class="form-control" id="image" >-->
-<!--			</div>-->
-
 			<div class="form-group">
-				<button type="submit" class="btn btn-dark float-left my-2 align-center">Update</button>
+				<label for="email"> Price: </label>
+				<input type="text" class="form-control " id="price" name="price" placeholder="Price" value="<?php echo isset($product['price']) ? $product['price'] :set_value('price'); ?>">
+				<span class="text-danger"><?php echo form_error('price'); ?></span>
+				<?php if (isset($errors)){?>
+				<span class="text-danger">  <?php echo $errors;?></span>
+				<?php } ?>
+
+			</div>
+
+			<label for="upload"> Image: </label>
+
+			<div class="input-group">
+
+				<div class="custom-file">
+					<div class="custom-file">
+						<input type="file" name="image" class="custom-file-input " id="upload" size="20">
+						<label class="custom-file-label" for="upload">Choose file</label>
+					</div>
+
+				</div>
+			</div>
+			<span class="text-danger"><?php echo form_error('image'); ?></span>
+
+			<div class="form-group mt-3">
+				<button type="submit" class="btn btn-outline-dark float-left my-2 align-center" style="width: 100%">Update</button>
 			</div>
 
 			<?php echo form_close(); ?>
 		</div>
 	</div>
+
 </div>
+
+
 

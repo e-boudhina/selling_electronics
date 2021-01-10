@@ -31,7 +31,7 @@ class Authenticate extends CI_Controller
 			//Login user
 			$u_object = $this->User_Model->login($u_email, $u_pwd);
 //			die('id: '.$u_id);
-			print_r($u_object->email);
+//			print_r($u_object->email);
 			//If user exists then an is is returned from the model,
 			if ($u_object){
 				//Create session
@@ -39,13 +39,30 @@ class Authenticate extends CI_Controller
 					'u_id'=> $u_object->id,
 					'u_name'=>$u_object->username,
 					'u_email'=>$u_email,
+					'u_admin' => $u_object->admin,
 					'logged_in'=> true
 				);
+
+//						print "<pre>";
+//		print_r($user_data);
+//		print "</pre>";
+//		die('here');
+
 				$this->session->set_userdata($user_data);
+//										print "<pre>";
+//		print_r(	$this->session->userdata());
+//		print "</pre>";
+//		die('here');
+
 //				die('success');
 				//Redirect with session message
 				$this->session->set_flashdata('success', 'You are now logged-In');
-				redirect('products');
+				if ($this->session->userdata('u_admin'))
+				{
+					redirect('products');
+				}else{
+					redirect('home');
+				}
 			}else{
 				$this->session->set_flashdata('error', 'Wrong credentials.');
 				//don't use redirect you need to load the view or else you'll loose session data
@@ -141,6 +158,7 @@ class Authenticate extends CI_Controller
 //		$this->session->unset_userdata('logged_in');
 //		$this->session->unset_userdata('user_id');
 //		$this->session->unset_userdata('email');
+//		$this->session->unset_userdata('admin');
 		$this->session->sess_destroy();
 		$this->session->set_flashdata('success','You are logged out ! We hope you come back soon. ');
 		redirect('login');

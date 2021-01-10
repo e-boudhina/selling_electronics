@@ -18,7 +18,7 @@ class Product_Model extends CI_Model
 	{
 		$this->db->insert("Products", $data);
 	}
-	function update_product($id)
+	function update_product($id,$optinalImage = null)
 	{
 		$name = $this->input->post('name');
 		$description = $this->input->post('description');
@@ -30,6 +30,21 @@ class Product_Model extends CI_Model
 			"description" => $description,
 			"price" => $price,
 		);
+
+		if (isset($optinalImage))
+		{
+			//adding the image field to the array
+			$product_data["image" ]= $optinalImage;
+//			print "<pre>";
+//			echo var_dump($product_data);
+//			print "</pre>";
+//		die('set');
+		}
+//		else{
+//			die("unset");
+//		}
+
+
 		$this->db->where('id', $id);
 		$this->db->update("Products", $product_data);
 	}

@@ -3,7 +3,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 ?>
 <?php if($this->session->flashdata('success')){?>
 	<div class="alert alert-success text-center"><?php echo $this->session->flashdata('success'); ?></div>
+<?php }elseif($this->session->flashdata('error')){?>
+<div class="alert alert-danger text-center"><?php echo $this->session->flashdata('error'); ?></div>
 <?php };?>
+
+
 <!-- Page Content -->
 <div class="container">
 
@@ -64,12 +68,13 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 							<p class="card-text"><?php echo $product['description'] ?></p>
 						</div>
 						<div class="card-footer">
-<!--							<small class="text-muted">&#9733; &#9733; &#9733; &#9733; &#9734;</small>-->
+
 							<?php if($this->session->userdata('logged_in')) { ?>
-							<a href="<?php echo site_url('customer/orders/add/'.$this->session->userdata['u_id'].'/'.$product['id']);?>" class="btn btn-outline-dark text-center">Add</a>
+								<a href="<?php echo site_url('customer/orders/add/'.$this->session->userdata['u_id'].'/'.$product['id']);?>" class="btn btn-outline-dark text-center">Add</a>
 							<?php }else {?>
 								<a href="<?php echo site_url('login');?>" class="btn btn-outline-dark text-center">Add</a>
 							<?php }?>
+
 
 
 						</div>

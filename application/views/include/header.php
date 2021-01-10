@@ -16,6 +16,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	<!-- Bootstrap core CSS -->
 	<link href="<?php echo base_url().'/assets/bootstrap/css/bootstrap.min.css'; ?>" rel="stylesheet">
 
+	<!--	font awesome-->
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
 	<!-- Custom styles for this template -->
 	<link href="<?php echo base_url(); ?>/assets/css/shop-homepage.css" rel="stylesheet">
 
@@ -70,8 +73,12 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 						</a>
 						<div class="dropdown-menu" aria-labelledby="navbarDropdown">
 <!--							<a class="dropdown-item" href="--><?php //echo site_url('products');?><!--">Profile</a> Not now-->
+							<?php if ($this->session->userdata('u_admin')) {?>
+
 							<a class="dropdown-item" href="<?php echo site_url('products');?>">Manage Products</a>
 							<div class="dropdown-divider"></div>
+							<?php  }?>
+
 							<a class="dropdown-item" href="<?php echo site_url('logout');?>">Logout</a>
 						</div>
 					</li>

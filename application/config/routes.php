@@ -68,8 +68,11 @@ $route['products/store'] = 'products/store';
 $route['customer/orders'] = 'cart/index';
 $route['customer/orders/add/(:num)/(:num)'] = 'cart/store/$1/$2';
 $route['customer/orders/delete/(:num)'] = 'cart/delete/$1';
+$route['quantity/add/one/(:num)'] = 'cart/quantity_add_one/$1';
+$route['quantity/remove/one/(:num)'] = 'cart/quantity_remove_one/$1';
 
-
+// Checkout routes:
+$route['customer/orders/checkout'] = 'checkout/index';
 $route['default_controller'] = 'home';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
