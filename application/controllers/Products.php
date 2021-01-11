@@ -50,6 +50,7 @@ class Products extends CI_Controller {
 		$this->load->view('include/footer');
 	}
 
+
 	public function update($id)
 	{
 //		print "<pre>";
@@ -125,7 +126,7 @@ class Products extends CI_Controller {
 				// Handling the image
 
 				//Setting config
-				$config['allowed_types'] = 'jpeg|png';
+				$config['allowed_types'] = 'jpeg||jpg|png';
 				$config['upload_path'] = './assets/images/products/';
 				$config['max_size'] = '20';
 				$config['max_width'] = '1920';
@@ -221,7 +222,7 @@ class Products extends CI_Controller {
 			// Handling the image
 
 			//Setting config
-			$config['allowed_types'] = 'jpeg|png';
+			$config['allowed_types'] = 'jpeg|jpg|png';
 			$config['upload_path'] = './assets/images/products/';
 			$config['max_size'] = '20';
 			$config['max_width'] = '1920';
@@ -294,6 +295,10 @@ class Products extends CI_Controller {
 	}
 	public function delete($id)
 	{
+//		Fetching the product
+		$data['product'] = $this->Product_Model->get_by_Id($id);
+//		die($data['product']['image']);
+		unlink("assets/images/products/".$data['product']['image']);
 		$this->Product_Model->delete_product_by_Id($id);
 		$this->session->set_flashdata('success','Product Deleted Successfully');
 		redirect('products');

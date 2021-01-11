@@ -61,7 +61,7 @@ class Order_Model extends CI_Model
 	function update_product_quantity_by_removing_one($id)
 	{
 		$query = $this->db->get_where('orders',array('id'=>$id));
-		//using $query result will returnt and array. Meanwhile row ill get you just one
+		//using $query result will return an array. Meanwhile row will get you just one
 		$order = $query->row();
 //		print "<pre>";
 //		print_r($order->quantity);

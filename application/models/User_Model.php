@@ -14,6 +14,12 @@ class User_Model extends CI_Model
 		$query = $this->db->get('users');
 		return $query->result_array();
 	}
+	public function get_user_with_id($id)
+	{
+		$query = $this->db->get_where('users',array('id'=>$id));
+		//using $query result will return an array. Meanwhile row will get you just one
+		return $query->row();
+	}
 	//Method 1
 //	function insert_data($data)
 //	{
@@ -27,7 +33,10 @@ class User_Model extends CI_Model
 			'email'=>$this->input->post('u_email'),
 			'password'=>$enc_password
 );
-		return $this->db->insert("Users", $data);
+		 $this->db->insert("Users", $data);
+		 $user_id = $this->db->insert_id();
+		 //return user id to be used to send email
+		 return $user_id;
 
 		}
 

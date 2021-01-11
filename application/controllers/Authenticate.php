@@ -1,6 +1,6 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
-
+require 'Email.php';
 class Authenticate extends CI_Controller
 {
 
@@ -102,12 +102,20 @@ class Authenticate extends CI_Controller
 //			$u_name = $this->input->post('u_name');
 //			$u_email = $this->input->post('u_email');
 			//Encrypting password using md5
-			$u_pwd = md5($this->input->post('u_password'));
+			$u_pwd = $this->input->post('u_password');
+			$hu_pwd = md5($u_pwd);
 
 
-			$this->User_Model->insert_data($u_pwd);
-			$this->session->set_flashdata('success','Registration Successful, Please log-in to your account.');
-			redirect('login');
+			$user_id = $this->User_Model->insert_data($hu_pwd);
+//			    echo "<pre>";
+//				var_dump($var);
+//				echo "</pre>";
+//				die('here');
+			//Sending email
+			redirect('email/send/'.$user_id.'/'.$u_pwd);
+			//check Email controller for more details
+
+
 			//Putting data into array
 //			$user_data = array(
 //				"username" => $u_name,

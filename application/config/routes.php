@@ -73,6 +73,12 @@ $route['quantity/remove/one/(:num)'] = 'cart/quantity_remove_one/$1';
 
 // Checkout routes:
 $route['customer/orders/checkout'] = 'checkout/index';
+
+//Email notification
+$route['/new-user/email/send/(:num)/(:any)'] = 'email/send/$1/$2';
+
+
+
 $route['default_controller'] = 'home';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
