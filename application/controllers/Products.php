@@ -118,6 +118,39 @@ class Products extends CI_Controller {
 			// If the request has an image
 			if(!empty($_FILES['image']['name']))
 			{
+				// Handling the image
+
+				//Setting config
+				$config['allowed_types'] = 'jpeg|png';
+				$config['upload_path'] = './assets/images/products/';
+				$config['max_size'] = '20';
+				$config['max_width'] = '1920';
+				$config['max_size'] = '1080';
+				//This must be set to false or else the saved name will contain "_" in place of space, by default it is set to True
+				$config['remove_spaces'] = FALSE;
+				$config['max_size'] = '0';
+				// By default, for security reasons dots and other symbols are replaced by underscore
+				/*
+				 * Ref From CI DOC
+				 * If set to TRUE, multiple filename extensions will be suffixed with an underscore in order to avoid triggering Apache mod_mime.
+				 * DO NOT turn off this option if your upload directory is public, as this is a security risk.
+				 */
+				$config['mod_mime_fix'] = FALSE;
+
+				//Changing filename
+				$filenameWithExt = $_FILES['image']['name'];
+//			die($filenameWithExt);
+				$filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);
+				$fileExt = pathinfo($filenameWithExt, PATHINFO_EXTENSION);
+
+				$fileNameToStore = $filename . '_' . time() . '.' . $fileExt;
+				$config['file_name'] = $fileNameToStore;
+//			die($config['file_name']);
+//			die($fileNameToStore);
+				$this->load->library('upload', $config);
+				$this->upload->initialize($config);
+//			die("here 3");
+
 				//Uploading file | do upload returns true or false
 				//if error while trying to upload
 				if (!$this->upload->do_upload('image')) {
@@ -133,12 +166,7 @@ class Products extends CI_Controller {
 				}else{
 					//If uploaded
 					$data = array('upload_data' => $this->upload->data());
-					$filenameWithExt = $_FILES['image']['name'];
-					$filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);
-					$fileExt = pathinfo($filenameWithExt, PATHINFO_EXTENSION);
 
-					$fileNameToStore = $filename . '_' . time() . '.' . $fileExt;
-//				die( $fileNameToStore);
 				}
 				//			}else{die('image does not exist');}
 			}
@@ -178,35 +206,79 @@ class Products extends CI_Controller {
 		if ($this->form_validation->run() == false) {
 			$this->create();
 
-		}else{
+		}else {
 			//True
 			$this->load->model('Product_Model');
-			die("here 3");
-
-			$name = $this->input->post('name');
-			$description = $this->input->post('description');
-			$price = $this->input->post('price');
 
 
+			// Handling the image
 
-			//Putting data into array
-			$product_data = array(
-				"name" => $name,
-				"description" => $description,
-				"price" => $price
-			);
+			//Setting config
+			$config['allowed_types'] = 'jpeg|png';
+			$config['upload_path'] = './assets/images/products/';
+			$config['max_size'] = '20';
+			$config['max_width'] = '1920';
+			$config['max_size'] = '1080';
+			//This must be set to false or else the saved name will contain "_" in place of space, by default it is set to True
+			$config['remove_spaces'] = FALSE;
+			$config['max_size'] = '0';
+			// By default, for security reasons dots and other symbols are replaced by underscore
+			$config['mod_mime_fix'] = FALSE;
 
-			$this->Product_Model->add_product($product_data);
-			$this->session->set_flashdata('success','Product added Successfully');
+
+			//Changing filename
+			$filenameWithExt = $_FILES['image']['name'];
+//			die($filenameWithExt);
+			$filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);
+			$fileExt = pathinfo($filenameWithExt, PATHINFO_EXTENSION);
+
+			$fileNameToStore = $filename . '_' . time() . '.' . $fileExt;
+			$config['file_name'] = $fileNameToStore;
+//			die($config['file_name']);
+//			die($fileNameToStore);
+			$this->load->library('upload', $config);
+			$this->upload->initialize($config);
+//			die("here 3");
+			// Uploading
+			if (!$this->upload->do_upload('image')) {
+				$errors = array('error' => $this->upload->display_errors());
+				$this->session->set_flashdata('error', $errors['error']);
+				$this->create();
+
+			} else {
+				//If uploaded
+				$data = array('upload_data' => $this->upload->data());
+
+			}
+
+
+			if (empty($errors)) {
+				$name = $this->input->post('name');
+				$description = $this->input->post('description');
+				$price = $this->input->post('price');
+				$image = $fileNameToStore;
+
+				//Putting data into array
+				$product_data = array(
+					"name" => $name,
+					"description" => $description,
+					"price" => $price,
+					"image" => $image
+				);
+
+				$this->Product_Model->add_product($product_data);
+				$this->session->set_flashdata('success', 'Product added Successfully');
 //			echo "here 4";
-			// don't use this->index() to redirect
-			redirect('products');
+				// don't use this->index() to redirect
+				redirect('products');
+			}
 		}
 	}
 
 	public function check_image_exists()
 	{
-		$this->form_validation->set_message('check_image_exists', 'Please select file.');
+		//name of the message must match function name
+		$this->form_validation->set_message('check_image_exists', 'Please select an image.');
 		if (empty($_FILES['image']['name'])) {
 			return false;
 		}else{

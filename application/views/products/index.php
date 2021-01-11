@@ -39,7 +39,7 @@
 				<th scope="row">
 					<?php echo $key+1; ?>
 				</th>
-				<td>image</td>
+				<td><img src="<?php echo base_url('assets/images/products/'.$product['image']);?>" alt="image" height="40px" width="50px"></td>
 				<td><?php echo $product['name']; ?></td>
 				<td><?php echo $product['description']; ?></td>
 				<td>

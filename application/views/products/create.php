@@ -1,4 +1,7 @@
 
+<?php if($this->session->flashdata('error')){?>
+	<div class="alert alert-danger text-center"><?php echo $this->session->flashdata('error'); ?></div>
+<?php };?>
 
 <div class="container">&nbsp;
 	<div class="card card-default">
