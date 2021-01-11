@@ -7,7 +7,7 @@ class Order_Model extends CI_Model
 	//Pass in the specific user id
 	public function get_All($id)
 	{
-		$this->db->select('o.id,o.user_id,o.product_id,p.name,p.description,p.price,o.quantity');
+		$this->db->select('o.id,o.user_id,o.product_id,p.name,p.description,p.price,p.image,o.quantity');
 		$this->db->from('orders o');
 		$this->db->join('users u', 'u.id = o.user_id');
 		$this->db->join('products p', 'p.id = o.product_id');
