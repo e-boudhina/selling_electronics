@@ -45,7 +45,8 @@
 
 				<div class="custom-file">
 					<div class="custom-file">
-						<input type="file" name="image" class="custom-file-input " id="upload" size="20">
+						<input type="hidden" name="currentImageName" value="<?php echo $product['image']; ?>">
+						<input type="file" name="image" class="custom-file-input " id="upload" size="20" value="test">
 						<label class="custom-file-label" for="upload">Choose file</label>
 					</div>
 

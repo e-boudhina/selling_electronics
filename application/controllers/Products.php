@@ -52,6 +52,10 @@ class Products extends CI_Controller {
 
 	public function update($id)
 	{
+//		print "<pre>";
+//		echo var_dump($this->input->post());
+//		print "</pre>";
+//		die();
 
 		//Testing
 		/*
@@ -165,6 +169,10 @@ class Products extends CI_Controller {
 //		die('errors');
 				}else{
 					//If uploaded
+					//delete old image
+					$image_name_before_upload = $this->input->post('currentImageName');
+					unlink("assets/images/products/".$image_name_before_upload);
+
 					$data = array('upload_data' => $this->upload->data());
 
 				}
@@ -190,7 +198,6 @@ class Products extends CI_Controller {
 	{
 
 //		echo "here 1";
-
 		//Loading the library
 		$this->load->library('form_validation');
 		//Form validation:
