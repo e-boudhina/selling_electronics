@@ -3,7 +3,6 @@
 <?php };?>
 
 
-
 <div class="container">&nbsp;
 
 <div class="card" style="width: 100%">

@@ -51,6 +51,10 @@ class Products extends CI_Controller {
 		$this->load->view('include/footer');
 	}
 
+	public function view($id)
+	{
+
+	}
 
 	public function update($id)
 	{

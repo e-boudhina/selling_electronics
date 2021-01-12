@@ -22,6 +22,6 @@ class Checkout extends CI_Controller
 
 	public function index()
 	{
-		die('here');
+		die('Checkout');
 	}
 }
