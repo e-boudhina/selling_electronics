@@ -77,6 +77,12 @@ $route['customer/orders/checkout'] = 'checkout/index';
 //Email notification
 $route['/new-user/email/send/(:num)/(:any)'] = 'email/send/$1/$2';
 
+//User
+$route['user/dashboard'] = 'user/index';
+$route['user/profile/(:num)'] = 'user/edit_profile/$1';
+$route['user/profile/update'] = 'user/profile_update';
+
+
 
 
 $route['default_controller'] = 'home';

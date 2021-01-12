@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 ?>
-<footer class="py-5 bg-dark relative" >
+<footer class="py-5 bg-dark fixed-bottom mt-4" >
 	<div class="container">
 		<p class="m-0 text-center text-white">Copyright &copy; Your Website 2020</p>
 	</div>

@@ -18,7 +18,9 @@ class User_Model extends CI_Model
 	{
 		$query = $this->db->get_where('users',array('id'=>$id));
 		//using $query result will return an array. Meanwhile row will get you just one
-		return $query->row();
+//		return $query->row(); don't user row it will return an std class and generate problems
+		return $query->row_array();
+
 	}
 	//Method 1
 //	function insert_data($data)
@@ -34,6 +36,38 @@ class User_Model extends CI_Model
 			'password'=>$enc_password
 );
 		 $this->db->insert("Users", $data);
+		 $user_id = $this->db->insert_id();
+		 //return user id to be used to send email
+		 return $user_id;
+
+		}
+		function update_data($id)
+		{
+
+			$username = $this->input->post('u_name');
+			$email = $this->input->post('u_email');
+			$pwd = $this->input->post('u_password');
+//		die($email);
+		$new_data = array(
+			'username' => $username,
+			'email' => $email,
+		);
+
+		if ($pwd != null) {
+			$new_data['password'] = md5($pwd);
+		}
+
+			$this->db->where('id', $id);
+			$this->db->update("Users", $new_data);
+
+			// updating session with new info
+			if ($this->session->userdata('u_name') != $username) {
+				$this->session->set_userdata('username', $username);
+			}
+			if ($this->session->userdata('u_email') != $email){
+				$this->session->set_userdata('email', $email);
+			}
+
 		 $user_id = $this->db->insert_id();
 		 //return user id to be used to send email
 		 return $user_id;

@@ -23,7 +23,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	<link href="<?php echo base_url(); ?>/assets/css/shop-homepage.css" rel="stylesheet">
 
 </head>
-<body>
+<body style="padding-bottom: 200px">
 
 <!-- Navigation -->
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
@@ -73,12 +73,17 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 						</a>
 						<div class="dropdown-menu" aria-labelledby="navbarDropdown">
 <!--							<a class="dropdown-item" href="--><?php //echo site_url('products');?><!--">Profile</a> Not now-->
+
+							<a class="dropdown-item" href="<?php echo site_url('user/dashboard');?>">Dashboard</a>
+
+							<a class="dropdown-item" href="<?php echo site_url('user/profile/'.$this->session->userdata('u_id'));?>">My profile</a>
+
 							<?php if ($this->session->userdata('u_admin')) {?>
 
-							<a class="dropdown-item" href="<?php echo site_url('products');?>">Manage Products</a>
-							<div class="dropdown-divider"></div>
-							<?php  }?>
+								<a class="dropdown-item" href="<?php echo site_url('products');?>">Manage Products</a>
 
+							<?php  }?>
+							<div class="dropdown-divider"></div>
 							<a class="dropdown-item" href="<?php echo site_url('logout');?>">Logout</a>
 						</div>
 					</li>

@@ -45,6 +45,7 @@ class Products extends CI_Controller {
 		//Retrieving the product by id
 		$data['product'] = $this->Product_Model->get_by_Id($id);
 // 		die($data);
+
 		$this->load->view('include/header');
 		$this->load->view('products/edit',$data);
 		$this->load->view('include/footer');
@@ -111,14 +112,6 @@ class Products extends CI_Controller {
 
 		} else {
 			//True
-			//Setting config
-			$config['allowed_types'] = 'jpeg|png';
-			$config['upload_path'] = './assets/images/products/';
-			$config['max_size'] = '20';
-			$config['max_width'] = '1920';
-			$config['max_size'] = '1080';
-			$this->load->library('upload',$config);
-//			$this->upload->initialize($config);
 
 			// If the request has an image
 			if(!empty($_FILES['image']['name']))
@@ -129,8 +122,6 @@ class Products extends CI_Controller {
 				$config['allowed_types'] = 'jpeg||jpg|png';
 				$config['upload_path'] = './assets/images/products/';
 				$config['max_size'] = '20';
-				$config['max_width'] = '1920';
-				$config['max_size'] = '1080';
 				//This must be set to false or else the saved name will contain "_" in place of space, by default it is set to True
 				$config['remove_spaces'] = FALSE;
 				$config['max_size'] = '0';
@@ -225,8 +216,7 @@ class Products extends CI_Controller {
 			$config['allowed_types'] = 'jpeg|jpg|png';
 			$config['upload_path'] = './assets/images/products/';
 			$config['max_size'] = '20';
-			$config['max_width'] = '1920';
-			$config['max_size'] = '1080';
+
 			//This must be set to false or else the saved name will contain "_" in place of space, by default it is set to True
 			$config['remove_spaces'] = FALSE;
 			$config['max_size'] = '0';
